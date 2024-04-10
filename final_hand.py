@@ -12,7 +12,6 @@ import tensorflow as tf
 import math 
 
 volume = 0.5
-# volbar = 0
 
 def keypoint_classifier(landmark_list, model_path='model/keypoint_classifier/keypoint_classifier.tflite', num_threads=1):
     # print("landmark", np.array(landmark_list).shape)
@@ -20,8 +19,6 @@ def keypoint_classifier(landmark_list, model_path='model/keypoint_classifier/key
     interpreter.allocate_tensors()
     input_details = interpreter.get_input_details()
     output_details = interpreter.get_output_details()
-    # print("output" ,output_details)
-    # print("input" ,input_details)
 
     input_details_tensor_index = input_details[0]['index']
     interpreter.set_tensor(input_details_tensor_index, np.array([landmark_list], dtype=np.float32))
